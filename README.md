@@ -1,7 +1,16 @@
-# Vue 3 + Vite
+# Vue 3 + Vite + Vitest
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This project serves as a playpen for vitest testing and vitest coverage reports
 
-## Recommended IDE Setup
+The project uses API calls that do not exist, so the frontend won't work visually. 
+That's okay since this is not the aim of this project.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Test
+run tests with watch
+```shell
+npm run test
+```
+coverage
+```shell
+npm run test:coverage
+```

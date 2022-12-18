@@ -1,39 +1,27 @@
 <template>
     <button :disabled="loading" @click="getPosts">Get posts</button>
-  
-    <p ># posts: {{ nrOfPosts }}</p>
-    
+    <button @click="setDummyVariable">Set Dummy Variable</button>
+    <p># posts: {{ nrOfPosts }} - {{ dummyVariable }}</p>
     <p v-if="loading" role="alert">Loading your posts…</p>
     <ul v-else>
-      <li v-for="post in posts" :key="post.id" data-test="post">
-        {{ post.title }}
-      </li>
+        <li v-for="post in posts" :key="post.id" data-test="post">
+            {{ post.title }}
+        </li>
     </ul>
-  </template>
-  
-  <script>
-  import axios from 'axios'
-  
-  export default {
-    data() {
-      return {
-        posts: null,
-        loading: null
-      }
-    },
-    methods: {
-      async getPosts() {
-        this.loading = true
-  
-        this.posts = await axios.get('/api/posts')
-  
-        this.loading = null
-      }
-    },
-    computed: {
-        nrOfPosts() {
-            return !this.loading && this.posts != null ? this.posts.length : 0;
-        }
-    }
-  }
-  </script>
+</template>
+
+<script setup>
+import { computed, onMounted } from "vue";
+import usePosts from "../composables/usePosts.js";
+const { dummyVariable, getPosts, loading, posts } = usePosts();
+
+onMounted(() => getPosts);
+const nrOfPosts = computed(() => {
+    return !loading.value && posts.value != null ? posts.value.length : 0;
+});
+
+// there's no test for this function to make sure I get other than 100% in coverage
+const setDummyVariable = () => {
+    dummyVariable.value = "TEST in progress...";
+};
+</script>

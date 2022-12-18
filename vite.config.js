@@ -7,7 +7,9 @@ export default defineConfig({
   test: {
     globals: true,
     coverage: {
-      include: ["src/**"]
+      all: true,
+      includeSource: ["./src/**"],
+      exclude: ["**/main.js", "**/test/*", "vite.config.js"]
     },
     environment: "jsdom"
   }
